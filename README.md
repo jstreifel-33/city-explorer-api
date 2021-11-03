@@ -32,7 +32,8 @@ Set **environmental variables** before attempting to use server:
 
 11-02-21 05:25 PM - Server spun up and local port proof of life completed successfully!
 11-02-21 09:03 PM - Server is serving appropriate data array based on user search query!
-11-02-21 10:39 PM - Error handling setup for 404, 500
+11-02-21 10:39 PM - Error handling setup for 404
+11-02-21 11:16 PM - Error handling for 500, 400, any other
 
 ## Credit and Collaborations
 
@@ -46,8 +47,8 @@ When utilizing this server, the client (city explorer app) will send a request f
 
 ## Feature Implementation Time Log
 
-| Feature # | Feature Name | Esitmated Time | Start Time | End Time | Total Time |
+| Feature # | Feature Name | Estimated Time | Start Time | End Time | Total Time |
 |-----------|--------------|----------------|------------|----------|------------|
-| 1 | Set up server | 00:40 | 04:45 PM | 05:31 PM | 00:00 |
-| 2 | Placeholder Weather | 01:30 | 05:41 PM | 09:00 PM | 00:00 |
-| 3 | Error Handling | 1:00 | 09:10 PM | 00:00 PM | 00:00 |
+| 1 | Set up server | 00:40 | 04:45 PM | 05:31 PM | 0:46 |
+| 2 | Placeholder Weather | 01:30 | 05:41 PM | 09:00 PM | 03:19 |
+| 3 | Error Handling | 1:00 | 09:10 PM | 11:16 PM | 02:06 |
