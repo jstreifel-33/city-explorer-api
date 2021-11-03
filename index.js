@@ -27,18 +27,20 @@ class Forecast {
   }
 }
 
-
 //server actions
 function serveWeather(req, res) {
   let search = req.query;
 
-  let weatherResult = weatherData.filter(place => Math.floor(parseFloat(search.lat)) === Math.floor(parseFloat(place.lat))  && Math.floor(parseFloat(search.lon)) === Math.floor(parseFloat(place.lon)));
+  let weatherResult = weatherData.find(place => Math.floor(parseFloat(search.lat)) === Math.floor(parseFloat(place.lat)) && Math.floor(parseFloat(search.lon)) === Math.floor(parseFloat(place.lon)));
 
-  let weatherArray = weatherResult[0].data.map(day => new Forecast(day.valid_date, day.weather.description));
-  console.log(weatherArray);
-  res.send(weatherArray); //weather stuff
+  let weatherArray = weatherResult.data.length > 0 ? weatherResult.data.map(day => new Forecast(day.valid_date, day.weather.description)) : false;
+
+  if(weatherArray){
+    res.send(weatherArray); // send back weather stuff
+  }else{
+    res.status(404).json({error: 'City weather data not found'}); //return not found error
+  }
 }
-
 
 //listen at open port (proof of life)
 app.listen(PORT, () => console.log('I am alive!'));
