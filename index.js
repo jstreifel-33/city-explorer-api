@@ -15,6 +15,7 @@ const PORT = process.env.PORT;
 //server paths
 app.get('/hello', (req, res) => res.send('Hi there! :)'));
 app.get('/weather', serveWeather);
+app.get('/*', (req,res) => res.status(500).json({error: 'Server resource does not exist!'}));
 
 //server Data
 let weatherData = require('./weather.json');
@@ -33,12 +34,12 @@ function serveWeather(req, res) {
 
   let weatherResult = weatherData.find(place => Math.floor(parseFloat(search.lat)) === Math.floor(parseFloat(place.lat)) && Math.floor(parseFloat(search.lon)) === Math.floor(parseFloat(place.lon)));
 
-  let weatherArray = weatherResult.data.length > 0 ? weatherResult.data.map(day => new Forecast(day.valid_date, day.weather.description)) : false;
+  let weatherArray = weatherResult ? weatherResult.data.map(day => new Forecast(day.valid_date, day.weather.description)) : false;
 
   if(weatherArray){
     res.send(weatherArray); // send back weather stuff
   }else{
-    res.status(404).json({error: 'City weather data not found'}); //return not found error
+    res.status(404).json({error: 'Weather data not found'}); //return not found error
   }
 }
 

@@ -30,8 +30,9 @@ Set **environmental variables** before attempting to use server:
 
 ## Change Log
 
-11-02-21 5:25 PM - Server spun up and local port proof of life completed successfully!
-11-02-21 9:03 PM - Server is serving appropriate data array based on user search query!
+11-02-21 05:25 PM - Server spun up and local port proof of life completed successfully!
+11-02-21 09:03 PM - Server is serving appropriate data array based on user search query!
+11-02-21 10:39 PM - Error handling setup for 404, 500
 
 ## Credit and Collaborations
 
