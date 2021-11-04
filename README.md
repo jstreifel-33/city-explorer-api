@@ -40,6 +40,7 @@ Set **environmental variables** before attempting to use server:
 11-03-21 06:42 PM - Weather data is served from a live external API source.
 11-03-21 08:07 PM - Movie data retrieval set up, serve to client successful.
 
+
 ## Credit and Collaborations
 
 Collaboration with [Ben Mills](https://github.com/akkanben) during the planning phase for the web request-response cycle.
@@ -58,6 +59,6 @@ When utilizing this server, the client (city explorer app) will send a request f
 | 2 | Placeholder Weather | 01:30 | 05:41 PM | 09:00 PM | 03:19 |
 | 3 | Error Handling | 01:00 | 09:10 PM | 11:16 PM | 02:06 |
 | 4 | Live Weather | 01:30 | 05:47 PM | 06:42 PM | 00:00 |
-| 5 | Movie Data | 02:00 | 06:55 PM | 08:08 PM | 00:00 |
+| 5 | Movie Data | 02:00 | 06:55 PM | 09:08 PM | 00:00 |
 
 

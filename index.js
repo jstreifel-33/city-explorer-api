@@ -38,6 +38,7 @@ class Forecast {
     this.lowTemp = obj.low_temp;
     this.highTemp = obj.high_temp;
     this.description = obj.weather.description;
+    this.icon = obj.weather.icon;
   }
 }
 
@@ -73,7 +74,6 @@ async function serveWeather(req, res) {
 //Handle movie information query
 
 async function serveMovie(req, res) {
-  console.log('movie server hit!');
   const { name } = req.query;
   try {
     let movieData = await retrieveMovies(name);
