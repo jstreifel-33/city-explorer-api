@@ -17,6 +17,7 @@ Ensure that `npm i` is run upon cloning project.
 Set **environmental variables** before attempting to use server:
 
   *`PORT` - the port that the server will serve from.
+  *
 
 ## Architecture
 
@@ -27,13 +28,18 @@ Set **environmental variables** before attempting to use server:
   * cors
   * dotenv
   * express
+  * axios
+
 
 ## Change Log
 
 11-02-21 05:25 PM - Server spun up and local port proof of life completed successfully!
 11-02-21 09:03 PM - Server is serving appropriate data array based on user search query!
-11-02-21 10:39 PM - Error handling setup for 404
-11-02-21 11:16 PM - Error handling for 500, 400, any other
+11-02-21 10:39 PM - Error handling setup for 404.
+11-02-21 11:16 PM - Error handling for 500, 400, any other.
+11-03-21 06:42 PM - Weather data is served from a live external API source.
+11-03-21 08:07 PM - Movie data retrieval set up, serve to client successful.
+
 
 ## Credit and Collaborations
 
@@ -51,4 +57,8 @@ When utilizing this server, the client (city explorer app) will send a request f
 |-----------|--------------|----------------|------------|----------|------------|
 | 1 | Set up server | 00:40 | 04:45 PM | 05:31 PM | 0:46 |
 | 2 | Placeholder Weather | 01:30 | 05:41 PM | 09:00 PM | 03:19 |
-| 3 | Error Handling | 1:00 | 09:10 PM | 11:16 PM | 02:06 |
+| 3 | Error Handling | 01:00 | 09:10 PM | 11:16 PM | 02:06 |
+| 4 | Live Weather | 01:30 | 05:47 PM | 06:42 PM | 00:00 |
+| 5 | Movie Data | 02:00 | 06:55 PM | 09:08 PM | 00:00 |
+
+
