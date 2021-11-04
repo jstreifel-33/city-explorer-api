@@ -1,28 +1,32 @@
 'use strict';
 
-//setup requirements of express server
+//--SETUP AND INITIALIZATION
+//Setup requirements of express server
 require('dotenv').config();
 const cors = require('cors');
 const express = require('express');
 const app = express();
 const axios = require('axios');
-
-//enable cors
+//Enable cors
 app.use(cors());
-
-//define PORT based on environment
+//Define PORT based on environment
 const PORT = process.env.PORT;
 
-//server paths
+//--SERVER PATHS
 app.get('/hello', (req, res) => res.send('Hi there! :)'));
 app.get('/weather', serveWeather);
+app.get('/movies', serveMovie);
 app.get('/*', (req,res) => res.status(500).json({error: 'Server resource does not exist!'}));
 
-//server Data
+//--SERVER DATA RETRIEVAL
+//Retrieve Weather data from weatherbit.io
 async function retrieveWeather(lat, lon) {
   return await axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&lat=${lat}&lon=${lon}&days=7&units=I`);
 }
-
+//Retrive Movie data from TMDB
+async function retrieveMovies(place){
+  return await axios.get(`https://api.themoviedb.org/3/movie/550?api_key=241e72dd762cf653d0f4c9a6b2dc611f`);
+}
 //Return classes
 class Forecast {
   constructor(obj){
@@ -33,7 +37,8 @@ class Forecast {
   }
 }
 
-//server actions
+//--SERVER ACTIONS
+//Handle weather information query
 async function serveWeather(req, res) {
   let {name, lat, lon} = req.query;
 
@@ -51,5 +56,8 @@ async function serveWeather(req, res) {
   }
 }
 
-//listen at open port (proof of life)
-app.listen(PORT, () => console.log('I am alive!'));
+//Handle movie information query
+
+//--HELLO SERVER
+//Listen at open port (proof of life)
+app.listen(PORT, () => console.log(`I am alive! Listening on port: ${process.env.PORT}`));
