@@ -33,7 +33,6 @@ Set **environmental variables** before attempting to use server:
   * express
   * axios
 
-
 ## Change Log
 
 11-02-21 05:25 PM - Server spun up and local port proof of life completed successfully!
@@ -71,3 +70,4 @@ Our WRRC is getting a bit more complex. Our netlify app makes a request to an AP
 | 3 | Error Handling | 01:00 | 09:10 PM | 11:16 PM | 02:06 |
 | 4 | Live Weather | 01:30 | 05:47 PM | 06:42 PM | 00:55 |
 | 5 | Movie Data | 02:00 | 06:55 PM | 09:08 PM | 02:13 |
+| 6 | Refactor/Modularize | 01:00 | 02:14 PM | 03:56 PM | 01:42 |
