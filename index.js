@@ -19,16 +19,17 @@ app.get('/weather', serveWeather);
 app.get('/*', (req,res) => res.status(500).json({error: 'Server resource does not exist!'}));
 
 //server Data
-function retrieveWeather(lat, lon) {
-  axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&lat=${lat}&lon=${lon}&days=7`)
-    .then(response => response);
+async function retrieveWeather(lat, lon) {
+  return await axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&lat=${lat}&lon=${lon}&days=7&units=I`);
 }
 
 //Return classes
 class Forecast {
-  constructor(date, description){
-    this.date = date;
-    this.description = description;
+  constructor(obj){
+    this.date = obj.datetime;
+    this.lowTemp = obj.low_temp;
+    this.highTemp = obj.high_temp;
+    this.description = obj.weather.description;
   }
 }
 
@@ -36,17 +37,18 @@ class Forecast {
 async function serveWeather(req, res) {
   let {name, lat, lon} = req.query;
 
-  let weatherResult = await retrieveWeather(lat, lon);
+  let weatherResponse = await retrieveWeather(lat, lon);
+  let weatherData = weatherResponse.data.data;
 
-  console.log(weatherResult);
+  let forecastArray = weatherData ? weatherData.map(day => new Forecast(day)) : false;
 
-  // let weatherArray = weatherResult ? weatherResult.data.map(day => new Forecast(day.valid_date, day.weather.description)) : false;
+  console.log(forecastArray);
 
-  // if(weatherArray){
-  //   res.send(weatherArray); // send back weather stuff
-  // }else{
-  //   res.status(404).json({error: 'Weather data not found'}); //return not found error
-  // }
+  if(forecastArray){
+    res.send(forecastArray); // send back forecast array
+  }else{
+    res.status(404).json({error: 'Weather data not found'}); //return not found error
+  }
 }
 
 //listen at open port (proof of life)
