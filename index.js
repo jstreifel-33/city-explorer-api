@@ -20,7 +20,7 @@ let { serveMovie } = require('./server_modules/movies');
 app.get('/hello', (req, res) => res.send('Hi there! :)'));
 app.get('/weather', serveWeather);
 app.get('/movies', serveMovie);
-app.get('/*', (req, res) => res.status(500).json({ error: 'Server resource does not exist!' }));
+app.get('/*', (req, res) => res.status(404).json({ error: 'Server resource does not exist!' }));
 
 //--HELLO SERVER
 //Listen at open port (proof of life)
