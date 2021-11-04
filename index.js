@@ -5,6 +5,7 @@ require('dotenv').config();
 const cors = require('cors');
 const express = require('express');
 const app = express();
+const axios = require('axios');
 
 //enable cors
 app.use(cors());
@@ -18,7 +19,10 @@ app.get('/weather', serveWeather);
 app.get('/*', (req,res) => res.status(500).json({error: 'Server resource does not exist!'}));
 
 //server Data
-let weatherData = require('./weather.json');
+function retrieveWeather(lat, lon) {
+  axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&lat=${lat}&lon=${lon}&days=7`)
+    .then(response => response);
+}
 
 //Return classes
 class Forecast {
@@ -29,18 +33,20 @@ class Forecast {
 }
 
 //server actions
-function serveWeather(req, res) {
-  let search = req.query;
+async function serveWeather(req, res) {
+  let {name, lat, lon} = req.query;
 
-  let weatherResult = weatherData.find(place => Math.floor(parseFloat(search.lat)) === Math.floor(parseFloat(place.lat)) && Math.floor(parseFloat(search.lon)) === Math.floor(parseFloat(place.lon)));
+  let weatherResult = await retrieveWeather(lat, lon);
 
-  let weatherArray = weatherResult ? weatherResult.data.map(day => new Forecast(day.valid_date, day.weather.description)) : false;
+  console.log(weatherResult);
 
-  if(weatherArray){
-    res.send(weatherArray); // send back weather stuff
-  }else{
-    res.status(404).json({error: 'Weather data not found'}); //return not found error
-  }
+  // let weatherArray = weatherResult ? weatherResult.data.map(day => new Forecast(day.valid_date, day.weather.description)) : false;
+
+  // if(weatherArray){
+  //   res.send(weatherArray); // send back weather stuff
+  // }else{
+  //   res.status(404).json({error: 'Weather data not found'}); //return not found error
+  // }
 }
 
 //listen at open port (proof of life)
