@@ -33,7 +33,6 @@ Set **environmental variables** before attempting to use server:
   * express
   * axios
 
-
 ## Change Log
 
 11-02-21 05:25 PM - Server spun up and local port proof of life completed successfully!
@@ -43,6 +42,7 @@ Set **environmental variables** before attempting to use server:
 11-03-21 06:42 PM - Weather data is served from a live external API source.
 11-03-21 08:07 PM - Movie data retrieval set up, serve to client successful.
 11-03-21 11:47 PM - API hosted on Heroku
+11-04-21 06:54 PM - Refactor of code, cleans things and adds modules.
 
 ## Credit and Collaborations
 
@@ -62,6 +62,12 @@ When utilizing this server, the client (city explorer app) will send a request f
 
 Our WRRC is getting a bit more complex. Our netlify app makes a request to an API that we've hosted on Heroku. That API looks at the path of the request, and forwards parameters accordingly to either TMDB API or WeatherBit.io API. The pinged API returns a response object, from which the heroku API grabs the data. The heroku API then cleans up the data and sends it back to our Netlify app, completing this WRRC.
 
+## 11-04
+
+![wrrc sketch](readme-img/WRRC-11-04.png)
+
+Our data flow is basically the same as it was described on 11-03, but this diagram has been fleshed out to be more detailed.
+
 ## Feature Implementation Time Log
 
 | Feature # | Feature Name | Estimated Time | Start Time | End Time | Total Time |
@@ -71,3 +77,4 @@ Our WRRC is getting a bit more complex. Our netlify app makes a request to an AP
 | 3 | Error Handling | 01:00 | 09:10 PM | 11:16 PM | 02:06 |
 | 4 | Live Weather | 01:30 | 05:47 PM | 06:42 PM | 00:55 |
 | 5 | Movie Data | 02:00 | 06:55 PM | 09:08 PM | 02:13 |
+| 6 | Refactor/Modularize | 01:00 | 02:14 PM | 03:56 PM | 01:42 |
