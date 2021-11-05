@@ -27,4 +27,4 @@ async function serveMovie(req, res) {
   }
 }
 
-module.exports = {serveMovie}
+module.exports = {serveMovie};

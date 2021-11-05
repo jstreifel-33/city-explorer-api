@@ -11,12 +11,7 @@ class Forecast {
 }
 
 async function retrieveWeather(lat, lon) {
-  console.log(lat, lon, process.env.WEATHER_API_KEY);
-  try{
   return await axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&lat=${lat}&lon=${lon}&days=7&units=I`);
-  }catch(e){
-    console.log('weather request failed');
-  }
 }
 
 async function serveWeather(req, res) {
@@ -24,10 +19,11 @@ async function serveWeather(req, res) {
   try{
     let weatherResponse = await retrieveWeather(lat, lon);
     let weatherData = weatherResponse.data.data;
-    let forecastArray = weatherData ? weatherData.map(day => new Forecast(day)) : false;
+    console.log(weatherData);
+    let forecastArray = weatherData.map(day => new Forecast(day));
     res.status(200).send(forecastArray); // send back forecast array on success
   } catch (e) {
-    res.status(500).json({ error: 'Something went wrong retrieving movie data. Please try again later.' }); //return error on error
+    res.status(500).json({ error: 'Something went wrong retrieving weather data. Please try again later.' }); //return error on error
   }
 }
 
