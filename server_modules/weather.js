@@ -2,7 +2,7 @@
 
 const axios = require('axios');
 
-let { cache } = require('./cache.js');
+const { cache } = require('./cache.js');
 
 module.exports = { serveWeather };
 
@@ -11,7 +11,7 @@ async function serveWeather(req, res) {
   const key = 'weather-' + lat + lon;
   const url = `http://api.weatherbit.io/v2.0/forecast/daily/?key=${process.env.WEATHER_API_KEY}&lang=en&lat=${lat}&lon=${lon}&days=7`;
 
-  if (cache[key] && (Date.now() - cache[key].timestamp < 50000)) {
+  if (cache[key] && (Date.now() - cache[key].timestamp < 300000)) {
     console.log('Cache hit');
     parseWeather(cache[key]);
     res.status(200).send(parseWeather(cache[key]));
