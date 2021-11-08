@@ -1,5 +1,7 @@
 const axios = require('axios');
 
+const { cache } = require('./cache.js');
+
 class Movie {
   constructor(obj) {
     this.title = obj.title;
@@ -18,13 +20,22 @@ async function retrieveMovies(place) {
 
 async function serveMovie(req, res) {
   const { name } = req.query;
-  try {
-    let movieData = await retrieveMovies(name);
-    let movieArray = movieData.data.results.map(movie => new Movie(movie));
+  const key = 'movies-' + name;
+  if (cache[key] && (Date.now() - cache[key].timestamp < 300000)) {
+    let movieArray = cache[key].data;
     res.status(200).send(movieArray);
-  } catch (e) {
-    res.status(500).send('Something went wrong retrieving movie data. Please try again later.');
+  } else {
+    cache[key] = {};
+    cache[key].timestamp = Date.now();
+    try {
+      let movieData = await retrieveMovies(name);
+      let movieArray = movieData.data.results.map(movie => new Movie(movie));
+      cache[key].data = movieArray;
+      res.status(200).send(movieArray);
+    } catch (e) {
+      res.status(500).send('Something went wrong retrieving movie data. Please try again later.');
+    }
   }
 }
 
-module.exports = {serveMovie};
+module.exports = { serveMovie };
