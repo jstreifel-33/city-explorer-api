@@ -22,11 +22,9 @@ async function serveMovie(req, res) {
   const { name } = req.query;
   const key = 'movies-' + name;
   if (cache[key] && (Date.now() - cache[key].timestamp < 300000)) {
-    console.log('movie cache hit');
     let movieArray = cache[key].data;
     res.status(200).send(movieArray);
   } else {
-    console.log('movie cache miss');
     cache[key] = {};
     cache[key].timestamp = Date.now();
     try {

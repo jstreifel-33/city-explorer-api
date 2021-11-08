@@ -12,11 +12,9 @@ async function serveWeather(req, res) {
   const url = `http://api.weatherbit.io/v2.0/forecast/daily/?key=${process.env.WEATHER_API_KEY}&lang=en&lat=${lat}&lon=${lon}&days=7`;
 
   if (cache[key] && (Date.now() - cache[key].timestamp < 300000)) {
-    console.log('Cache hit');
     parseWeather(cache[key]);
     res.status(200).send(parseWeather(cache[key]));
   } else {
-    console.log('Cache miss');
     cache[key] = {};
     cache[key].timestamp = Date.now();
     let response = await axios.get(url);
