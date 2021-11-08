@@ -2,7 +2,7 @@
 
 **Author**: Joseph Streifel
 
-**Version**: 1.0.0
+**Version**: 1.1.0
 
 ## Overview
 
@@ -43,6 +43,7 @@ Set **environmental variables** before attempting to use server:
 11-03-21 08:07 PM - Movie data retrieval set up, serve to client successful.
 11-03-21 11:47 PM - API hosted on Heroku
 11-04-21 06:54 PM - Refactor of code, cleans things and adds modules.
+11-07-21 07:49 PM - Cache added to server to reduce repeated external API calls.
 
 ## Credit and Collaborations
 
@@ -68,6 +69,12 @@ Our WRRC is getting a bit more complex. Our netlify app makes a request to an AP
 
 Our data flow is basically the same as it was described on 11-03, but this diagram has been fleshed out to be more detailed.
 
+## 11-05
+
+![wrrc-sketch]()
+
+The latest update to this program includes a server cache, which is included in the above drawing. The server checks cache for request being made and only queries external API if data not found in cache. Data flow is otherwise pretty similar to what we've had so far.
+
 ## Feature Implementation Time Log
 
 | Feature # | Feature Name | Estimated Time | Start Time | End Time | Total Time |
@@ -78,3 +85,4 @@ Our data flow is basically the same as it was described on 11-03, but this diagr
 | 4 | Live Weather | 01:30 | 05:47 PM | 06:42 PM | 00:55 |
 | 5 | Movie Data | 02:00 | 06:55 PM | 09:08 PM | 02:13 |
 | 6 | Refactor/Modularize | 01:00 | 02:14 PM | 03:56 PM | 01:42 |
+| 7 | Request Cache | 02:00 | 04:37 PM | 07:49 PM | 03:12 |
