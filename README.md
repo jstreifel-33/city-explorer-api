@@ -71,7 +71,7 @@ Our data flow is basically the same as it was described on 11-03, but this diagr
 
 ## 11-05
 
-![wrrc-sketch]()
+![wrrc-sketch](readme-img/WRRC-11-05.jpg)
 
 The latest update to this program includes a server cache, which is included in the above drawing. The server checks cache for request being made and only queries external API if data not found in cache. Data flow is otherwise pretty similar to what we've had so far.
 
